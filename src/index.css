@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #f8fbff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f8fbff;
+  /* overflow: hidden; */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  @apply cursor-pointer disabled:cursor-no-drop;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-400 focus:bg-white;
+}
+
+.authBtn {
+  @apply w-full rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:bg-blue-700 disabled:bg-gray-500 disabled:hover:bg-gray-500;
+}
+
+::-webkit-scrollbar {
+  @apply h-1 w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.18),transparent_35%),linear-gradient(135deg,#f8fbff_0%,#eef6ff_100%)];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 rounded-xl;
+}
