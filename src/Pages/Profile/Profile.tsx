@@ -161,7 +161,7 @@ const Profile = () => {
         toast.success(response.message);
       }
     } catch (error: any) {
-      console.error(error);
+      toast.error(error.message);
     } finally {
       dispatch(hideLoader());
     }
@@ -188,7 +188,6 @@ const Profile = () => {
         });
       }
     } catch (error: any) {
-      console.error(error);
       if (error) {
         toast.error(error.message);
       }
@@ -206,7 +205,6 @@ const Profile = () => {
 
     try {
       const response = await uploadProfilePic(payload);
-      console.log(response);
 
       if (response.status === "success") {
         dispatch(setUser(response.data));
@@ -214,7 +212,7 @@ const Profile = () => {
         setSelectedFile("");
       }
     } catch (error: any) {
-      console.error(error);
+      toast.error(error.message);
     } finally {
       dispatch(hideLoader());
     }

@@ -18,7 +18,6 @@ const Home = () => {
     // Emit an event from client
     // socket.emit("send-message-all", { text: "Hi from John!" });
     // socket.on("send-message-by-server", (data) => {
-    //   console.log(data);
     // });
 
     // SOCKET ROOM FOR SPECIFIC USER
@@ -35,7 +34,7 @@ const Home = () => {
       //   recipient: "6a4bcb8b2bea18e8703fb12e",
       // });
       // socket.on("receive-message", (data) => {
-      //   console.log(data);
+
       // });
     }
   }, [userData, onlineUsers]);

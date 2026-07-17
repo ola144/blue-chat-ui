@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, type ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../../services/auth";
+import { toast } from "react-toastify";
 
 type FormData = {
   firstName: string;
@@ -128,13 +129,12 @@ const Signup = () => {
 
     signup(palyload)
       .then((res: any) => {
-        console.log(res);
         if (res) {
           navigate("/login");
         }
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       })
       .finally(() => {
         setLoading(false);

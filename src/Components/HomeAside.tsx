@@ -165,8 +165,6 @@ const HomeAside = () => {
     }
   }, [allChats, allUsers, searchKey]);
 
-  console.log(filterChat);
-
   useEffect(() => {
     const handleReceiveMsg = (message: any) => {
       if (message?.chatId !== selectedChat?.id) {
@@ -258,8 +256,6 @@ const HomeAside = () => {
                 const chats = allChats.some((chat) =>
                   chat.members.map((member) => member.id).includes(contact.id),
                 );
-
-                console.log(contact);
 
                 const unreadCount = getUnreadMessageCount(contact.id);
 

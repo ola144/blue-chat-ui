@@ -64,7 +64,6 @@ export const uploadProfilePic = async (payload: any) => {
     if (error.message.includes("413")) {
       toast.error("Image size is too large. Please select another image!");
     }
-    console.log(error.message);
     toast.error(error.response.data.message);
     return error;
   }
