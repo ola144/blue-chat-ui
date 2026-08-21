@@ -40,12 +40,12 @@ const Home = () => {
   }, [userData, onlineUsers]);
 
   return (
-    <div className="h-screen max-w-7xl text-slate-800 overflow-y-hidden mx-auto">
+    <div className="h-screen  text-slate-800 overflow-y-hidden">
       <div className="sticky top-0 z-50">
         <HomeHeader />
       </div>
 
-      <div className="flex overflow-y-hidden h-fit">
+      <div className="flex overflow-y-hidden h-fit  mx-auto max-w-7xl">
         <HomeAside />
 
         <HomeMain />
