@@ -23,6 +23,7 @@ import { socket } from "../services/socket";
 import EmojiPicker from "emoji-picker-react";
 import ImageView from "./ImageView";
 import Logo from "../assets/logo/blue-chat.png";
+import { hideLoader, showLoader } from "../redux/loaderSlice";
 
 const HomeMain = () => {
   const [message, setMessage] = useState("");
@@ -97,7 +98,7 @@ const HomeMain = () => {
   };
 
   const getMessages = async () => {
-    // dispatch(showLoader());
+    dispatch(showLoader());
     try {
       const response = await getAllMessages(selectedChat.id);
 
@@ -106,6 +107,8 @@ const HomeMain = () => {
       }
     } catch (error: any) {
       toast.error(error?.response?.data?.message);
+    } finally {
+      dispatch(hideLoader());
     }
   };
 
@@ -282,7 +285,6 @@ const HomeMain = () => {
                   key={`${msg.text}-${index}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.08 }}
                   className={`flex mt-1 ${isCurrentUserSender(msg.sender) ? "justify-end" : "justify-start"}`}
                 >
                   <div

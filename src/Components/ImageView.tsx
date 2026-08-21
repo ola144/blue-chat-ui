@@ -17,7 +17,7 @@ const ImageView = ({
       >
         <button
           onClick={() => setSelectedImage(null)}
-          className="absolute -top-3 -right-3 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow"
+          className="absolute sm:-top-3 top-0 sm:-right-3 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow"
         >
           ✕
         </button>
