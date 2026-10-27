@@ -2,6 +2,7 @@
 import api from "./axios";
 import { setAllMessage } from "../redux/userSlice";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export interface MessageObj {
   chatId: string;
@@ -29,7 +30,10 @@ export const getAllMessages = async (chatId: string) => {
     setAllMessage(response.data);
     return response.data;
   } catch (error: any) {
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -39,7 +43,10 @@ export const createNewMessage = async (message: MessageObj) => {
 
     return response.data;
   } catch (error: any) {
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -55,7 +62,11 @@ export const updateMesssage = async (
 
     return response.data;
   } catch (error: any) {
-    toast.error(error?.response?.data?.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+      toast.error(error?.response?.data?.message);
+    }
+
+    throw error;
   }
 };

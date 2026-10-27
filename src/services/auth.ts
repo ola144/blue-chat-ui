@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from "react-toastify";
 import api from "./axios";
+import axios from "axios";
 
 interface SignData {
   firstName: string;
@@ -25,9 +26,12 @@ export const signup = async (payload: SignData) => {
 
     return response;
   } catch (error: any) {
-    toast.error(
-      error.response.data.message || "Something went wrong. Please try again",
-    );
+    if (axios.isAxiosError(error)) {
+      toast.error(
+        error?.response?.data.message ||
+          "Something went wrong. Please try again",
+      );
+    }
   }
 };
 
@@ -43,9 +47,11 @@ export const login = async (payload: LoginData) => {
 
     return response;
   } catch (error: any) {
-    toast.error(
-      error.response.data.message || "Something went wrong. Please try again",
-    );
+    if (axios.isAxiosError(error))
+      toast.error(
+        error?.response?.data.message ||
+          "Something went wrong. Please try again",
+      );
   }
 };
 

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from "axios";
 import api from "./axios";
 
 export const getAllChats = async () => {
@@ -7,7 +8,10 @@ export const getAllChats = async () => {
 
     return response.data;
   } catch (error: any) {
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -19,7 +23,10 @@ export const startChat = async (members: string[]) => {
 
     return response.data;
   } catch (error: any) {
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -31,6 +38,9 @@ export const clearUnreadMsgCount = async (chatId: string) => {
 
     return response.data;
   } catch (error: any) {
-    return error;
+    if (axios.isAxiosError(error)) {
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };

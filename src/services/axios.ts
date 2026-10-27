@@ -23,19 +23,21 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (
-      error.response?.status === 401 &&
-      window.location.pathname !== "/login"
-    ) {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("userId");
+    if (axios.isAxiosError(error)) {
+      if (
+        error.response?.status === 401 &&
+        window.location.pathname !== "/login"
+      ) {
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userId");
 
-      sessionStorage.setItem(
-        "sessionExpired",
-        "Your session has expired, Please login again.",
-      );
+        sessionStorage.setItem(
+          "sessionExpired",
+          "Your session has expired, Please login again.",
+        );
 
-      window.location.href = "/login";
+        window.location.href = "/login";
+      }
     }
 
     return Promise.reject(error);

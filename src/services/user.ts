@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from "react-toastify";
 import api from "./axios";
+import axios from "axios";
 
 export const getLoggedInUser = async () => {
   try {
@@ -8,8 +9,12 @@ export const getLoggedInUser = async () => {
 
     return response.data;
   } catch (error: any) {
-    toast.error(error.response.data.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data.message);
+      console.error("Status:", error.response?.data);
+    }
+
+    throw error;
   }
 };
 
@@ -19,8 +24,11 @@ export const getAllUsers = async () => {
 
     return response.data;
   } catch (error: any) {
-    toast.error(error.response.data.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data.message);
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -33,8 +41,11 @@ export const updateUserProfile = async (payload: any) => {
 
     return response.data;
   } catch (error: any) {
-    toast.error(error?.response?.data?.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data.message);
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -47,8 +58,11 @@ export const updatePassword = async (payload: any) => {
 
     return response.data;
   } catch (error: any) {
-    toast.error(error.response.data.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data.message);
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
 
@@ -64,7 +78,10 @@ export const uploadProfilePic = async (payload: any) => {
     if (error.message.includes("413")) {
       toast.error("Image size is too large. Please select another image!");
     }
-    toast.error(error.response.data.message);
-    return error;
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data.message);
+      console.error("Status:", error.response?.data);
+    }
+    throw error;
   }
 };
